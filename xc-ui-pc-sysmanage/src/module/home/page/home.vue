@@ -89,7 +89,7 @@
     },
     methods: {
       onSubmit() {
-        console.log('submit!');
+        //console.log('submit!');
       },
       handleopen() {
         //console.log('handleopen');

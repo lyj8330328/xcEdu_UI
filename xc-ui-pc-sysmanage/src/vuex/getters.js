@@ -1,4 +1,4 @@
-//test
+// test
 export const getCount = state => {
-    return state.count
+  return state.count
 }

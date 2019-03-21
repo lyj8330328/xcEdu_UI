@@ -19,13 +19,11 @@ module.exports = {
         target: 'http://127.0.0.1:7777'
 
       },
-      '/api/cms': {
+      '/api/cms/': {
         target: 'http://localhost:31001',
         pathRewrite: {
-          '^/api': ''
+          '^/api': '' //实际请求的时候去掉/api
         }
-        //target: 'http://127.0.0.1:50201'
-
       }
       /*,
       '/ucenter': {

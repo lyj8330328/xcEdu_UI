@@ -9,10 +9,9 @@ import VueRouter from 'vue-router'
 import routes from './base/router'
 import store from './vuex/store'
 import Vuex from 'vuex'
-import utilApi from './common/utils';
+import utilApi from './common/utils'
 // import Mock from './mock'
 // Mock.bootstrap();
-
 
 Vue.config.productionTip = false
 
@@ -21,18 +20,17 @@ Vue.use(ElementUI)
 Vue.use(Vuex)
 Vue.use(VueRouter)
 
-
 //  将vue-resource在vue中绑定，自动在vue对象实例上注入一个$http对象就可以使用ajax方法了
-import vueResource from 'vue-resource';
-let Base64 = require('js-base64').Base64;
+import vueResource from 'vue-resource'
+let Base64 = require('js-base64').Base64
 let sysConfig = require('@/../config/sysConfig')
 let openAuthenticate = sysConfig.openAuthenticate
 let openAuthorize = sysConfig.openAuthorize
 
-Vue.use(vueResource);
+Vue.use(vueResource)
 /* eslint-disable no-new */
 const router = new VueRouter({
-  routes:routes
+  routes: routes
 })
 /*
 router.beforeEach((to, from, next) => {
@@ -77,8 +75,8 @@ router.beforeEach((to, from, next) => {
     next();
   }
 
-});*/
-//授权
+}); */
+// 授权
 // router.afterEach((to, from, next) => {
 //   if(openAuthorize){
 //     let activeUser
@@ -100,9 +98,9 @@ router.beforeEach((to, from, next) => {
 // });
 
 import axios from 'axios'
-import { Message } from 'element-ui';
+import { Message } from 'element-ui'
 
-/*// 添加请求拦截器
+/* // 添加请求拦截器
 axios.interceptors.request.use(function (config) {
   // 在发送请求向header添加jwt
   let jwt = utilApi.getJwt()
@@ -132,7 +130,7 @@ axios.interceptors.response.use(data => {
     }
   }
   return data
-})*/
+}) */
 
 new Vue({
   el: '#app',

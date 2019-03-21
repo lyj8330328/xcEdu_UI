@@ -1,4 +1,4 @@
-import Mock from 'mockjs';
+import Mock from 'mockjs'
 const LoginUsers = [
   {
     id: 1,
@@ -7,9 +7,9 @@ const LoginUsers = [
     avatar: 'https://raw.githubusercontent.com/taylorchen709/markdown-images/master/vueadmin/user.png',
     name: '张某某'
   }
-];
+]
 
-const Users = [];
+const Users = []
 
 for (let i = 0; i < 86; i++) {
   Users.push(Mock.mock({
@@ -19,7 +19,7 @@ for (let i = 0; i < 86; i++) {
     'age|18-60': 1,
     birth: Mock.Random.date(),
     sex: Mock.Random.integer(0, 1)
-  }));
+  }))
 }
 
-export { LoginUsers, Users };
+export { LoginUsers, Users }
