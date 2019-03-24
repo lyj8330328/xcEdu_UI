@@ -12,6 +12,11 @@
       </el-select>
       页面别名：<el-input v-model="params.pageAlias" style="width: 100px"></el-input>
       <el-button type="primary" v-on:click="query" size="small">查询</el-button>
+      <router-link class="mui-tab-item" :to="{path:'/cms/page/add/',query:{
+          page: this.params.page,
+          siteId: this.params.siteId}}">
+        <el-button  type="primary" size="small">新增页面</el-button>
+      </router-link>
     </el-form>
     <!--data table-->
     <el-table :data="list" highlight-current-row v-loading="listLoading" style="width: 100%;">
@@ -91,6 +96,11 @@
           total: 10,
           siteList: [] // 站点列表
         }
+      },
+      created () {
+        // 从路由上获取参数
+        this.params.page = Number.parseInt(this.$route.query.paget || 1)
+        this.params.siteId = this.$route.query.siteId || ''
       },
       mounted () {
         // 初始查询
