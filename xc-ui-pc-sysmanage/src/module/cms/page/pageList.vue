@@ -36,7 +36,6 @@
       </el-table-column>
       <el-table-column label="编辑" width="80">
         <template slot-scope="scope">
-
           <el-button
             size="small" type="primary"
             @click="edit(scope.row.pageId)">编辑
@@ -99,7 +98,7 @@
       },
       created () {
         // 从路由上获取参数
-        this.params.page = Number.parseInt(this.$route.query.paget || 1)
+        this.params.page = Number.parseInt(this.$route.query.page || 1)
         this.params.siteId = this.$route.query.siteId || ''
       },
       mounted () {
@@ -118,6 +117,15 @@
         ]
       },
       methods: {
+        edit (pageId) {
+          this.$router.push({
+            path: '/cms/page/edit/' + pageId,
+            query: {
+              page: this.params.page,
+              siteId: this.params.siteId
+            }
+          })
+        },
         query () {
           console.log(this.params)
           cmsApi.pageList(this.params.page, this.params.size, this.params).then((resp) => {

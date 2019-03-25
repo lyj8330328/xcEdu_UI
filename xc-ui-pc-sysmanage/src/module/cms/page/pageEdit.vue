@@ -52,7 +52,7 @@
     </el-form>
     <div slot="footer" class="dialog-footer">
       <el-button @click="goBack">返回</el-button>
-      <el-button type="primary" @click.native="addSubmit" :loading="addLoading">提交</el-button>
+      <el-button type="primary" @click.native="editSubmit" :loading="addLoading">提交</el-button>
     </div>
   </div>
 </template>
@@ -78,9 +78,10 @@
             pageParameter: '',
             pagePhysicalPath: '',
             pageType: '',
-            pageCreateTime: new Date()
+            pageCreateTime: ''
           },
           addLoading: false, // 提交按钮加载
+          pageId: '', // 页面id
           // 表单校验规则
           pageFormRules: {
             siteId: [
@@ -102,17 +103,17 @@
         }
       },
       methods: {
-        addSubmit () {
+        editSubmit () {
           this.$refs.pageForm.validate((valid) => {
             if (valid) {
-              this.$confirm('确认提交吗？', '提示', {}).then(() => {
-                cmsApi.pageAdd(this.pageForm).then((res) => {
+              this.$confirm('确认修改吗？', '提示', {}).then(() => {
+                cmsApi.pageEdit(this.pageId, this.pageForm).then((res) => {
                   console.log(res)
                   if (res.success) {
-                    this.$message.success('提交成功')
-                    this.$refs['pageForm'].resetFields() // 提交成功后重置表单
+                    this.$message.success('修改成功')
+                    this.goBack() // 修改成功后返回
                   } else {
-                    this.$message.error('提交失败')
+                    this.$message.error('修改失败')
                   }
                 })
               })
@@ -152,6 +153,15 @@
             templateName: '轮播图'
           }
         ]
+        // 页面参数通过路由传入，使用this.$route.params来获取
+        this.pageId = this.$route.params.pageId
+        // 根据页面Id回显数据
+        cmsApi.pageGet(this.pageId).then((res) => {
+          console.log(res)
+          if (res.success) {
+            this.pageForm = res.cmsPage
+          }
+        })
       }
     }
 </script>
