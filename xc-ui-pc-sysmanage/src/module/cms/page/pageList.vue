@@ -44,11 +44,10 @@
       </el-table-column>
       <el-table-column label="删除" width="80">
         <template slot-scope="scope">
-
           <el-button
             size="mini"
             type="danger"
-            @click="del(scope.$index, scope.row)">删除
+            @click="del(scope.row.pageId)">删除
           </el-button>
         </template>
       </el-table-column>
@@ -117,6 +116,19 @@
         ]
       },
       methods: {
+        del (pageId) {
+          this.$confirm('确认删除此页面吗？', '提示', {}).then(() => {
+            console.log(pageId)
+            cmsApi.pageDel(pageId).then((res) => {
+              if (res.success) {
+                this.$message.success('删除成功！')
+                this.query()
+              } else {
+                this.$message.error('删除失败！')
+              }
+            })
+          })
+        },
         edit (pageId) {
           this.$router.push({
             path: '/cms/page/edit/' + pageId,
@@ -127,9 +139,9 @@
           })
         },
         query () {
-          console.log(this.params)
+          // console.log(this.params)
           cmsApi.pageList(this.params.page, this.params.size, this.params).then((resp) => {
-            console.log(resp)
+            // console.log(resp)
             this.total = resp.queryResult.total
             this.list = resp.queryResult.list
           })

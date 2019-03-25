@@ -21,3 +21,7 @@ export const pageGet = id => {
 export const pageEdit = (id, params) => {
   return http.requestPut(apiUrl + '/cms/page/update/' + id, params)
 }
+// 删除页面
+export const pageDel = id => {
+  return http.requestDelete(apiUrl + '/cms/page/delete/' + id)
+}
