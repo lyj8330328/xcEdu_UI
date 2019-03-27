@@ -111,6 +111,8 @@
                   if (res.success) {
                     this.$message.success('提交成功')
                     this.$refs['pageForm'].resetFields() // 提交成功后重置表单
+                  } else if (res.message) {
+                    this.$message.error(res.message)
                   } else {
                     this.$message.error('提交失败')
                   }
