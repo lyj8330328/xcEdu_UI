@@ -32,7 +32,7 @@
       </el-table-column>
       <el-table-column prop="pagePhysicalPath" label="物理路径" width="250">
       </el-table-column>
-      <el-table-column prop="pageCreateTime" label="创建时间" width="180" :formatter="formatCreateTime">
+      <el-table-column prop="pageCreateTime" label="创建时间" width="200" :formatter="formatCreateTime">
       </el-table-column>
       <el-table-column label="编辑" width="80">
         <template slot-scope="scope">
@@ -51,10 +51,10 @@
           </el-button>
         </template>
       </el-table-column>
-      <el-table-column label="静态化" width="80">
+      <el-table-column label="页面预览" width="100">
         <template slot-scope="scope">
           <el-button
-            size="small" type="primary" plain @click="generateHtml(scope.row.pageId)">静态化
+            size="small" type="primary" plain @click="preview(scope.row.pageId)">页面预览
           </el-button>
         </template>
       </el-table-column>
@@ -116,6 +116,9 @@
         ]
       },
       methods: {
+        preview (pageId) {
+          window.open('http://www.xuecheng.com/cms/preview/' + pageId)
+        },
         del (pageId) {
           this.$confirm('确认删除此页面吗？', '提示', {}).then(() => {
             console.log(pageId)
