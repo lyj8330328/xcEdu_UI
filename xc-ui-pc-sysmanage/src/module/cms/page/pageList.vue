@@ -116,6 +116,17 @@
         ]
       },
       methods: {
+        postPage (pageId) {
+          this.$confirm('确认发布该页面吗？', '提示', {}).then(() => {
+            cmsApi.pagePost(pageId).then((res) => {
+              if (res.success) {
+                this.$message.success('页面发布成功，请稍后查看效果')
+              } else {
+                this.$message.error('页面发布失败！')
+              }
+            })
+          })
+        },
         preview (pageId) {
           window.open('http://www.xuecheng.com/cms/preview/' + pageId)
         },
