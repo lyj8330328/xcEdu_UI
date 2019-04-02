@@ -27,5 +27,5 @@ export const pageDel = id => {
 }
 // 页面发布
 export const pagePost = id => {
-  return http.requestDelete(apiUrl + '/cms/page/postPage/' + id)
+  return http.requestPost(apiUrl + '/cms/page/postPage/' + id)
 }
