@@ -65,6 +65,13 @@
           </el-button>
         </template>
       </el-table-column>
+      <el-table-column label="撤销" width="80">
+        <template slot-scope="scope">
+          <el-button
+            size="small" type="primary" plain @click="redoPage(scope.row.pageId)">撤销
+          </el-button>
+        </template>
+      </el-table-column>
     </el-table>
     <!--分页条-->
     <el-col :span="30" class="toolbar">
@@ -116,6 +123,17 @@
         ]
       },
       methods: {
+        redoPage (pageId) {
+          this.$confirm('确认撤销发布的页面吗？', '提示', {}).then(() => {
+            cmsApi.pagePostRollBack(pageId).then((res) => {
+              if (res.success) {
+                this.$message.success('页面撤销成功，请稍后查看效果')
+              } else {
+                this.$message.error('页面撤销失败！')
+              }
+            })
+          })
+        },
         postPage (pageId) {
           this.$confirm('确认发布该页面吗？', '提示', {}).then(() => {
             cmsApi.pagePost(pageId).then((res) => {

@@ -29,3 +29,7 @@ export const pageDel = id => {
 export const pagePost = id => {
   return http.requestPost(apiUrl + '/cms/page/postPage/' + id)
 }
+// 页面发布撤销
+export const pagePostRollBack = id => {
+  return http.requestPost(apiUrl + '/cms/page/redoPage/' + id)
+}
