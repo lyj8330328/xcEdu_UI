@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form :model="courseForm" label-width="80px" :rules="courseRules" ref="courseForm">
+    <el-form :model="courseForm" label-width="100px" :rules="courseRules" ref="courseForm">
       <el-form-item label="课程名称" prop="name">
         <el-input v-model="courseForm.name" auto-complete="off" ></el-input>
       </el-form-item>
@@ -9,7 +9,6 @@
       </el-form-item>
       <el-form-item label="课程分类" prop="categoryActive">
         <el-cascader
-          expand-trigger="hover"
           :options="categoryList"
           v-model="categoryActive"
           :props="props">
@@ -38,7 +37,6 @@
   </div>
 </template>
 <script>
-
   import * as courseApi from '../api/course';
   import utilApi from '../../../common/utils';
   import * as systemApi from '../../../base/api/system';
@@ -89,6 +87,7 @@
           // 选择课程分类存储到categoryActive
            this.courseForm.mt=  this.categoryActive[0]//大分类
            this.courseForm.st=  this.categoryActive[1]//小分类
+        console.log(this.courseForm)
           courseApi.addCourseBase(this.courseForm).then(res=>{
               if(res.success){
                   this.$message.success("提交成功")
@@ -107,20 +106,17 @@
     mounted(){
       // 查询课程分类
       courseApi.categoryFindlist().then(res=>{
-          this.categoryList = res.children;
+          this.categoryList = res;
           console.log(this.categoryList)
-
       })
 
       //查询数据字典
       //查询课程等级
-      systemApi.sys_getDictionary("200").then(res=>{
-
+      systemApi.sysGetDictionary('200').then(res => {
         this.gradeList = res.dvalue;
       })
-      //查询学习模式
-      systemApi.sys_getDictionary("201").then(res=>{
-
+      // //查询学习模式
+      systemApi.sysGetDictionary('201').then(res=>{
         this.studymodelList = res.dvalue;
       })
 

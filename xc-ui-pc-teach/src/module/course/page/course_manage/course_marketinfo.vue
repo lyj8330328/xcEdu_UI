@@ -95,10 +95,10 @@
 
       this.courseMarketForm.id = this.courseid;
       //查询字典
-      systemApi.sys_getDictionary('203').then((res) => {
+      systemApi.sysGetDictionary('203').then((res) => {
         this.chargeList = res.dvalue;
       });
-      systemApi.sys_getDictionary('204').then((res) => {
+      systemApi.sysGetDictionary('204').then((res) => {
         this.validList = res.dvalue;
       });
 

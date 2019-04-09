@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form :model="courseForm" label-width="80px" :rules="courseRules" ref="courseForm">
+    <el-form :model="courseForm" label-width="100px" :rules="courseRules" ref="courseForm">
       <el-form-item label="课程名称" prop="name">
         <el-input v-model="courseForm.name" auto-complete="off" ></el-input>
       </el-form-item>
@@ -121,11 +121,11 @@
     },
     mounted(){
       //查询数据字典字典
-      systemApi.sys_getDictionary('201').then((res) => {
+      systemApi.sysGetDictionary('201').then((res) => {
 //        console.log(res);
         this.studymodelList = res.dvalue;
       });
-      systemApi.sys_getDictionary('200').then((res) => {
+      systemApi.sysGetDictionary('200').then((res) => {
         this.gradeList = res.dvalue;
       });
       //取课程分类

@@ -50,6 +50,10 @@ export const publish = id => {
   return http.requestPost(apiUrl + '/course/publish/'+id);
 }
 // 查询课程信息
+export const getCoursebaseById = courseId => {
+  return http.requestGet(apiUrl + '/course/coursebase/' + courseId)
+}
+
 export const findCourseView = courseId => {
   return http.requestQuickGet(apiUrl+'/course/courseview/'+courseId)
 }

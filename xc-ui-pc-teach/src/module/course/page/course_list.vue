@@ -48,18 +48,7 @@
         page:1,
         size:7,
         total: 0,
-        courses: [
-          {
-            id:'4028e581617f945f01617f9dabc40000',
-            name:'test01',
-            pic:''
-          },
-          {
-            id:'test02',
-            name:'test02',
-            pic:''
-          }
-        ],
+        courses: [],
         sels: [],//列表选中列
         imgUrl:sysConfig.imgUrl
       }
@@ -72,7 +61,7 @@
       },
       //获取课程列表
       getCourse() {
-        courseApi.findCourseList(this.page,this.size,{}).then((res) => {
+        courseApi.findCourseList(this.page,this.size,{companyId : 1}).then((res) => {
           console.log(res);
           if(res.success){
             this.total = res.queryResult.total;

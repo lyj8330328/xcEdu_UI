@@ -2,7 +2,7 @@
 // Template version: 1.2.4
 // see http://vuejs-templates.github.io/webpack for documentation.
 const path = require('path')
-var proxyConfig = require('./proxyConfig')
+let proxyConfig = require('./proxyConfig')
 let sysConfig = require('./sysConfig')
 let xcApiUrl = sysConfig.xcApiUrl
 module.exports = {
@@ -11,87 +11,68 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    //proxyTable: proxyConfig.proxyList,
+    // proxyTable: proxyConfig.proxyList,
     proxyTable: {
       '/banner': {
         // target: 'http://localhost:3000/mock/11'
         target: 'http://127.0.0.1:7777'
       },
-     /* '/api': {
-        // target: 'http://localhost:3000/mock/11'
-        target: xcApiUrl
-        //target: 'http://127.0.0.1:50201'
-
-      }*/
-       '/api/ucenter': {
+      '/api/ucenter': {
        // target: 'http://localhost:3000/mock/11'
-       target: 'http://127.0.0.1:31200',
-         pathRewrite: {
-           '^/api': ''
-         }
+        target: 'http://127.0.0.1:31200',
+        pathRewrite: {
+          '^/api': ''
+        }
        // target: 'http://127.0.0.1:50201'
-
-       },
-       '/api/auth': {
+      },
+      '/api/auth': {
        // target: 'http://localhost:3000/mock/11'
-       target: 'http://127.0.0.1:31200/auth',
-         pathRewrite: {
-           '^/api': ''
-         }
+        target: 'http://127.0.0.1:31200/auth',
+        pathRewrite: {
+          '^/api': ''
+        }
        // target: 'http://127.0.0.1:50201/api'
 
-       },
-       '/api/course': {
+      },
+      '/api/course': {
        // target: 'http://localhost:3000/mock/11'
-         target: 'http://127.0.0.1:31200',
-         pathRewrite: {
-           '^/api': ''
-         }
+        target: 'http://127.0.0.1:31200',
+        pathRewrite: {
+          '^/api': ''
+        }
        // target: 'http://127.0.0.1:50201/api'
 
-       },
-       '/api/media': {//媒资管理
-       target: 'http://127.0.0.1:31400',
-         pathRewrite: {
-           '^/api': ''
-         }
+      },
+      '/api/media': {// 媒资管理
+        target: 'http://127.0.0.1:31400',
+        pathRewrite: {
+          '^/api': ''
+        }
        // target: 'http://127.0.0.1:50201'
-       },
-
-       '/api/cms': {//cms管理
-       //target: 'http://127.0.0.1:31001'
-       target: 'http://127.0.0.1:50201',
-         pathRewrite: {
-           '^/api': ''
-         }
-
-       },
-
-       '/api/filesystem': {//文件系统管理
-       target: 'http://127.0.0.1:22100',
-         pathRewrite: {
-           '^/api': ''
-         }
+      },
+      '/api/filesystem': {// 文件系统管理
+        target: 'http://127.0.0.1:22100',
+        pathRewrite: {
+          '^/api': ''
+        }
        // target: 'http://127.0.0.1:50201'
-
-       },
-       '/api/category': {//分类管理
+      },
+      '/api/category': {// 分类管理
        // target: 'http://127.0.0.1:3000/mock/11'
-       target: 'http://127.0.0.1:31200',
-         pathRewrite: {
-           '^/api': ''
-         }
+        target: 'http://127.0.0.1:31200',
+        pathRewrite: {
+          '^/api': ''
+        }
        // target: 'http://127.0.0.1:50201'
-
-       },
-       '/api/sys': {//系统管理
-       target: 'http://127.0.0.1:31001',
-         pathRewrite: {
-           '^/api': ''
-         }
-       // target: 'http://127.0.0.1:50201'
-
-       }
+      },
+      '/api/sys': {
+        // 系统管理
+        target: 'http://127.0.0.1:32000',
+        pathRewrite: {
+          '^/api': ''
+        }
+        // target: 'http://127.0.0.1:50201'
+      }
       /*'/static/!*': {//系统管理
        //target: 'http://127.0.0.1:31001'
        target: 'http://127.0.0.1'
