@@ -9,7 +9,6 @@
       </el-form-item>
       <el-form-item label="课程分类" prop="categoryActive">
         <el-cascader
-          expand-trigger="hover"
           :options="categoryList"
           v-model="categoryActive"
           :props="props">
@@ -95,8 +94,7 @@
                 let st = this.categoryActive[1];
                 this.courseForm.mt = mt;
                 this.courseForm.st = st;
-                let id = this.courseForm.id
-                courseApi.updateCoursebase(id,this.courseForm).then((res) => {
+                courseApi.updateCoursebase(this.courseForm).then((res) => {
                   this.editLoading = false;
                   if(res.success){
                     this.$message({
@@ -130,7 +128,7 @@
       });
       //取课程分类
       courseApi.categoryFindlist({}).then((res) => {
-        this.categoryList = res.children;
+        this.categoryList = res;
       });
       //查询课程信息
         //课程id

@@ -19,6 +19,14 @@ export const categoryFindlist = () => {
 export const addCourseBase = params => {
   return http.requestPost(apiUrl + '/course/coursebase/add', params)
 }
+// 查询课程信息
+export const getCoursebaseById = courseId => {
+  return http.requestGet(apiUrl + '/course/coursebase/' + courseId)
+}
+// 修改课程基础信息
+export const updateCoursebase = params => {
+  return http.requestPut(apiUrl + '/course/coursebase/update', params)
+}
 // 查询课程计划
 export const findTeachplanList = courseid => {
   return http.requestQuickGet(apiUrl + '/course/teachplan/list/' + courseid)
@@ -48,10 +56,6 @@ export const preview = id => {
 // 发布课程
 export const publish = id => {
   return http.requestPost(apiUrl + '/course/publish/'+id);
-}
-// 查询课程信息
-export const getCoursebaseById = courseId => {
-  return http.requestGet(apiUrl + '/course/coursebase/' + courseId)
 }
 
 export const findCourseView = courseId => {
