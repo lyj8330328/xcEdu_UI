@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form :model="courseMarketForm" label-width="110px" :rules="courseMarketFormRules" ref="courseMarketForm">
+    <el-form :model="courseMarketForm" label-position="left" label-width="110px" :rules="courseMarketFormRules" ref="courseMarketForm">
       <el-form-item label="课程价格" prop="charge">
         <b v-for="charge in chargeList">
           <el-radio v-model="courseMarketForm.charge" :label="charge.sdId" >{{charge.sdName}}</el-radio>
@@ -15,7 +15,7 @@
         </b>
         <br/>
         开始时间：
-        <el-date-picker :disabled="this.courseMarketForm.valid == '204002'?false:true"  type="date" placeholder="选择日期" v-model="courseMarketForm.startTime"></el-date-picker>
+        <el-date-picker style="width: 200px" :disabled="this.courseMarketForm.valid == '204002'?false:true"  type="date" placeholder="选择日期" v-model="courseMarketForm.startTime"></el-date-picker>
         结束时间：
         <el-date-picker :disabled="this.courseMarketForm.valid == '204002'?false:true"  type="date" placeholder="选择日期" v-model="courseMarketForm.endTime"></el-date-picker>
       </el-form-item>
@@ -79,7 +79,7 @@
                    this.$router.push({ path: '/course/add/plan/3/1/'+this.courseid})
                  }
                }else{
-                 this.$message.error('提交失败');
+                 this.$message.error(res.message);
                }
                });
             });

@@ -35,6 +35,14 @@ export const findTeachplanList = courseid => {
 export const addTeachplan = teachplah => {
   return http.requestPost(apiUrl + '/course/teachplan/add', teachplah)
 }
+// 查询课程营销信息
+export const getCourseMarketById = courseId => {
+  return http.requestGet(apiUrl + '/course/coursemarket/' + courseId)
+}
+// 更新或者新增课程营销信息
+export const updateCourseMarket = (courseId, coursemarket) => {
+  return http.requestPut(apiUrl + '/course/coursemarket/' + courseId, coursemarket)
+}
 
 // 保存课程图片地址到课程数据库
 export const addCoursePic = (courseId,pic) => {
