@@ -45,17 +45,17 @@ export const updateCourseMarket = (courseId, coursemarket) => {
 }
 
 // 保存课程图片地址到课程数据库
-export const addCoursePic = (courseId,pic) => {
+export const addCoursePic = (courseId, pic) => {
   return http.requestPost(apiUrl + '/course/coursepic/add?courseId=' + courseId + '&pic=' + pic)
 }
 // 查询课程图片
 export const findCoursePicList = courseId => {
-  return http.requestQuickGet(apiUrl + '/course/coursepic/list/'+courseId)
+  return http.requestQuickGet(apiUrl + '/course/coursepic/list/' + courseId)
 }
 
 // 删除课程图片
 export const deleteCoursePic = courseId => {
-  return http.requestDelete(apiUrl + '/course/coursepic/delete?courseId='+courseId)
+  return http.requestDelete(apiUrl + '/course/coursepic/delete/' + courseId)
 }
 // 预览课程
 export const preview = id => {

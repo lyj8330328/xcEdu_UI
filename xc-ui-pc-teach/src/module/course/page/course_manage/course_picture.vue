@@ -5,11 +5,13 @@
       list-type="picture-card"
       :before-upload="setuploaddata"
       :on-success="handleSuccess"
+      :on-error="handleError"
       :file-list="fileList"
       :limit="picmax"
       :on-exceed="rejectupload"
       :before-remove="handleRemove"
-      :data="uploadval">
+      :data="uploadval"
+      name="multipartFile">
       <i class="el-icon-plus"></i>
     </el-upload>
   </div>
@@ -42,21 +44,17 @@
       },
       //删除图片
       handleRemove(file, fileList) {
-        console.log(file)
         //调用服务端去删除课程图片信息，如果返回false，前端停止删除
-        //异步调用
-        return new Promise((resolve,rejct)=>{
+        //异步调用e
+        return new Promise((resolve,reject)=>{
           courseApi.deleteCoursePic(this.courseid).then(res=>{
             if(res.success){
-
-                //成功
+              this.$message.success('删除成功')
               resolve()
-            }else{
+            } else {
               this.$message.error("删除失败");
-                //失败
-              rejct()
+              reject()
             }
-
           })
         })
 
@@ -64,14 +62,13 @@
       //上传成功的钩子方法
       handleSuccess(response, file, fileList){
         console.log(response)
-//        alert('上传成功')
         //调用课程管理的保存图片接口，将图片信息保存到课程管理数据库course_pic中
         //从response得到新的图片文件的地址
         if(response.success){
           let fileId = response.fileSystem.fileId;
           courseApi.addCoursePic(this.courseid,fileId).then(res=>{
               if(res.success){
-                  this.$message.success("上传图片")
+                  this.$message.success("上传图片成功！")
               }else{
                 this.$message.error(res.message)
               }
@@ -90,18 +87,14 @@
       //进行中pending
       //执行成功 resolve
       //执行失败 reject
-      testPromise(i){
-
-          return new Promise((resolve,reject)=>{
-              if(i<2){
-                  //成功了
-                resolve('成功了');
-              }else{
-                  //失败了
-                reject('失败了');
-              }
-
-          })
+      testpromise(i){
+        return new Promise((resolve,reject)=>{
+          if(i % 2 === 0){
+            resolve('成功了')
+          }else{
+            reject('拒绝了')
+          }
+        })
       }
     },
     mounted(){
@@ -116,13 +109,13 @@
           }
 
       })
-      //测试调用promise方法，then中写的成功后的回调方法，
-//      this.testPromise(3).then(res=>{
-//          alert(res)
-//      }).catch(res=>{//catch就是执行失败的回调方法
-//          alert("失败了。。。。。")
-//          alert(res)
-//      })
+     // // 测试调用promise方法，then中写的成功后的回调方法，
+     // this.testpromise(3).then(res=>{
+     //     alert(res)
+     // }).catch(res=>{//catch就是执行失败的回调方法
+     //     alert("失败了。。。。。")
+     //     alert(res)
+     // })
     }
   }
 </script>
