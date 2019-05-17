@@ -59,18 +59,19 @@ export const deleteCoursePic = courseId => {
 }
 // 预览课程
 export const preview = id => {
-  return http.requestPost(apiUrl + '/course/preview/'+id);
+  return http.requestPost(apiUrl + '/course/preview/' + id)
 }
 // 发布课程
 export const publish = id => {
-  return http.requestPost(apiUrl + '/course/publish/'+id);
+  return http.requestPost(apiUrl + '/course/publish/' + id)
 }
 
 export const findCourseView = courseId => {
-  return http.requestQuickGet(apiUrl+'/course/courseview/'+courseId)
+  return http.requestQuickGet(apiUrl + '/course/courseview/' + courseId)
 }
 
 // 保存媒资信息
 export const savemedia = teachplanMedia => {
-  return http.requestPost(apiUrl+'/course/savemedia',teachplanMedia);
+  return http.requestPost(apiUrl + '/course/savemedia', teachplanMedia)
 }
+

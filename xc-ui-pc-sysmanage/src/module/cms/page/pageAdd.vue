@@ -152,6 +152,10 @@
           {
             templateId: '5a962bf8b00ffc514038fafa',
             templateName: '轮播图'
+          },
+          {
+            templateId:'5aec5dd70e661808240ab7a6',
+            templateName:'课程详情'
           }
         ]
       }
