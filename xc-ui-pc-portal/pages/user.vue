@@ -1,6 +1,7 @@
 <template>
     <div>
-      index.vue页面，测试页面
+      user.vue页面，用户管理导航，<nuxt-link :to="'/user/110'">修改</nuxt-link>
+      <nuxt-child />
     </div>
 </template>
 
