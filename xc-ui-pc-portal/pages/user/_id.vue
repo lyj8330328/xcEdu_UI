@@ -21,18 +21,18 @@
     },
     async asyncData () {
       console.log('async方法')
-      const a = await new Promise(function (resolve, reject) {
-        setTimeout(function () {
-          console.log(1)
-          resolve(1)
-        }, 2000)
-      })
-      const b = await new Promise(function (resolve, reject) {
-        setTimeout(function () {
-          console.log(2)
-          resolve(1)
-        }, 1000)
-      })
+      // const a = await new Promise(function (resolve, reject) {
+      //   setTimeout(function () {
+      //     console.log(1)
+      //     resolve(1)
+      //   }, 2000)
+      // })
+      // const b = await new Promise(function (resolve, reject) {
+      //   setTimeout(function () {
+      //     console.log(2)
+      //     resolve(1)
+      //   }, 1000)
+      // })
       return {
         name: 'Java'
       }
