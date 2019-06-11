@@ -3,12 +3,11 @@
     <div class="learing-list">
       <div class="list-box">
         <ul>
-          <li>关键字ss：</li>
+          <li>关键字：</li>
           <ol>
             <li>{{keyword}}
 
               <nuxt-link v-if="keyword" class="title-link" :to="'/course/search?keyword=&mt='+mt+'&st=' + st+'&grade='+grade">
-                &Chi;
               </nuxt-link>
             </li>
           </ol>
@@ -23,25 +22,17 @@
               <nuxt-link  class="title-link" :to="'/course/search?keyword='+keyword+'&mt=' + category_v.id" v-else>{{category_v.name}}</nuxt-link>
             </li>
           </ol>
-          <!--<ol>
-            <li>数据分析</li>
-            <li>机器学习工程</li>
-            <li>前端开发工程</li>
-          </ol>-->
         </ul>
         <ul>
           <li>二级分类：</li>
           <li v-if="st!=''"><nuxt-link  class="title-link" :to="'/course/search?keyword='+keyword+'&mt='+mt+'&grade='+grade">全部</nuxt-link></li>
           <li class="all" v-else>全部</li>
-          <ol v-if="second_category.length>0">
+          <ol v-if="second_category.length > 0">
             <li v-for="category_v in second_category">
               <nuxt-link  class="title-link all" :to="'/course/search?keyword='+keyword+'&mt='+mt+'&st=' + category_v.id" v-if="category_v.id == st">{{category_v.name}}</nuxt-link>
               <nuxt-link  class="title-link" :to="'/course/search?keyword='+keyword+'&mt='+mt+'&st=' + category_v.id" v-else>{{category_v.name}}</nuxt-link>
             </li>
-            <!-- <li>大数据</li>
-             <li>云计算</li>-->
           </ol>
-          <!--<a href="#" class="more">更多 ∨</a>-->
         </ul>
         <ul>
           <li>难度等级：</li>
@@ -187,14 +178,22 @@
         page = Number.parseInt(page)
       }
       let courseData = await courseApi.searchCourse(page, 2, route.query)
+      // 查询分类
+      let categoryData = await courseApi.sysresCategory()
       if (courseData && courseData.queryResult){
+        // 全部分类
+        let category = categoryData.category
+        // 一级分类
+        let firstCategory = category[0].children
+        // 二级分类
+        let secondCategory = []
         let keywords = ''
         let mt=''
         let st=''
         let grade=''
         let keyword=''
         let total = courseData.queryResult.total
-        if( route.query.mt){
+        if(route.query.mt){
           mt = route.query.mt
         }
         if(route.query.st){
@@ -206,10 +205,22 @@
         if(route.query.keyword){
           keyword = route.query.keyword
         }
+        // 如果路由中的一级分类不为空，那么就继续搜索二级分类
+        if (mt != '') {
+          for (let index in firstCategory) {
+            keywords += firstCategory[index].name + ' '
+            if (firstCategory[index].id == mt) {
+              secondCategory = firstCategory[index].children
+              break;
+            }
+          }
+        }
+        console.log(courseData.queryResult.list)
         return {
           courselist: courseData.queryResult.list, // 课程列表
-          first_category:{},
-          second_category:{},
+          first_category:firstCategory,
+          second_category:secondCategory,
+          keywords:keywords,
           mt: mt,
           st: st,
           grade: grade,
@@ -297,6 +308,6 @@
     overflow:hidden;
   }
   .eslight{
-    color: #990000;
+    color: red;
   }
 </style>
